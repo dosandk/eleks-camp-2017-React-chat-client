@@ -1,0 +1,26 @@
+@import '../../../styles/_variables';
+
+.chat-container {
+  display: flex;
+  height: 100%;
+}
+
+.left-side {
+  @extend %side;
+  background: $primary;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff528d;
+}
+
+.right-side {
+  @extend %side;
+}
+
+%side {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

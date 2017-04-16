@@ -10,13 +10,12 @@ import { push } from 'react-router-redux';
 class LoginContainer extends Component {
   render() {
     return (
-      <div>
-        <Login {...this.props} redirect={ () => push('/chat') } />
-      </div>
+      <Login {...this.props} />
     );
   }
 }
 
-const mapActionsToProps = dispatch => bindActionCreators(Object.assign({}, loginActions, loaderActions), dispatch);
+const actionCreators = Object.assign({}, loginActions, loaderActions, { push });
+const mapActionsToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
 export default connect(null, mapActionsToProps)(LoginContainer);

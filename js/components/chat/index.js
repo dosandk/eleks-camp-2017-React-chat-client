@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import * as ws from '../../utils/ws';
+import { TextField, RaisedButton } from 'material-ui';
+
+import styles from './chat.scss';
 
 class Chat extends Component {
   constructor(...args) {
@@ -9,15 +12,14 @@ class Chat extends Component {
       message: ''
     };
     this.submitMessage = this.submitMessage.bind(this);
-    this.changeTextarea = this.changeTextarea.bind(this);
+    this.changeInput = this.changeInput.bind(this);
   }
-  changeTextarea(event) {
+  changeInput(event) {
     const { value: message } = event.target;
 
     this.setState({ message });
   }
-  submitMessage(e) {
-    e.preventDefault();
+  submitMessage() {
     ws.sendMessage(this.state.message);
     this.clearForm();
   }
@@ -31,18 +33,22 @@ class Chat extends Component {
   }
   render() {
     return (
-      <div>
-        <form onSubmit={ this.submitMessage }>
-          <div>
-            <textarea value={ this.state.message } onChange={ this.changeTextarea } />
-          </div>
-          <div>
-            <input type="submit"/>
-          </div>
-        </form>
-        <ul id="chat">
+      <div className={ styles['chat-container'] }>
+        <ul className={ styles['left-side'] }>
           { this.messages }
         </ul>
+        <form className={ styles['right-side'] }>
+          <div>
+            <TextField value={ this.state.message }
+                       name="message-box"
+                       type="text"
+                       multiLine={ true }
+                       onChange={ this.changeInput } />
+          </div>
+          <RaisedButton label="Submit message"
+                        primary={ true }
+                        onClick={ this.submitMessage }/>
+        </form>
       </div>
     );
   }

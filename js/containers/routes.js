@@ -6,10 +6,10 @@ import LoginContainer from '../containers/login';
 
 const Routes = () => {
   return (
-    <div>
+    <div className="routes-wrapper">
+      <Route exact path='/' component={ LoginContainer } />
       <Route component={ App } />
       <Switch>
-        <Route exact path='/' component={ LoginContainer } />
         <Route path='/chat' component={ ChatContainer } />
       </Switch>
     </div>
