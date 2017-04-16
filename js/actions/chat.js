@@ -6,31 +6,31 @@ export {
   leaveChat
 };
 
-function sendMessage(message) {
+function sendMessage(msg) {
+  const { message, username } = msg;
+
   return {
     type: SEND_MESSAGE,
     payload: {
-      message
+      message: `${username} >> ${message}`
     }
   };
 }
 
 function joinChat(username) {
-  console.error('joinChat', username);
   return {
     type: JOIN_CHAT,
     payload: {
-      username
+      username: `${username} joined to chat`
     }
   };
 }
 
 function leaveChat(username) {
-  console.error('leaveChat', username);
   return {
     type: LEAVE_CHAT,
     payload: {
-      username
+      username: `${username} left chat`
     }
   };
 }

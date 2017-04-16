@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import App from './app';
-import Counter from './counter';
-import TestComponent from '../components/test';
+import ChatContainer from '../containers/chat';
 import LoginContainer from '../containers/login';
 
 const Routes = () => {
@@ -10,9 +9,8 @@ const Routes = () => {
     <div>
       <Route component={ App } />
       <Switch>
-        <Route path='/test' component={ TestComponent } />
-        <Route path='/counter' component={ Counter } />
-        <Route path='/login' component={ LoginContainer } />
+        <Route exact path='/' component={ LoginContainer } />
+        <Route path='/chat' component={ ChatContainer } />
       </Switch>
     </div>
   );

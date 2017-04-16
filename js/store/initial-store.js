@@ -1,5 +1,6 @@
 const initialStore = {
-  counter: 0,
+  user: {},
+  loader: false,
   router: {},
   messages: []
 };

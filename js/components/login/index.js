@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Login extends Component {
   constructor(...args) {
@@ -22,9 +23,19 @@ class Login extends Component {
   login(e) {
     e.preventDefault();
     const { username, pass } = this.state;
+    const { dispatch, redirect, login, showLoader, hideLoader } = this.props;
 
     if (username && pass) {
-      this.props.login({ username, pass });
+      showLoader();
+      login({ username, pass })
+        .then(() => {
+          dispatch(redirect());
+          hideLoader();
+        })
+        .catch(err => {
+          hideLoader();
+          console.error(`Error: ${err}`);
+        });
     }
   }
   render() {
@@ -48,4 +59,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect()(Login);

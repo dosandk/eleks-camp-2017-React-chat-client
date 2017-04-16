@@ -7,7 +7,7 @@ export {
 };
 
 let socket;
-let listeners = {};
+const listeners = {};
 
 function initConnection(message) {
   if (!socket) {
@@ -28,18 +28,15 @@ function connect() {
 }
 
 function onMessage(msg) {
-  console.error('onMessage');
   fireListeners('message', msg);
 }
 
-function onJoin() {
-  console.error('onJoin');
-  fireListeners('join');
+function onJoin(username) {
+  fireListeners('join', username);
 }
 
-function onLeave() {
-  console.error('onLeave');
-  fireListeners('leave');
+function onLeave(username) {
+  fireListeners('leave', username);
 }
 
 function send(message) {
