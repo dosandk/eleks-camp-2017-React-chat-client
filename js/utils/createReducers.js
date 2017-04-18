@@ -12,9 +12,8 @@ function createReducers(reducerObj) {
 
 function createReducer(handlers) {
   return (state = null, action) => {
-    if (handlers[action.type]) {
-      return handlers[action.type](state, action);
-    }
-    return state;
+    const actionType = handlers[action.type];
+
+    return actionType ? actionType(state, action) : state;
   };
 }
